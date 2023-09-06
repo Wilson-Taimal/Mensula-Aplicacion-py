@@ -2,6 +2,7 @@ from tkinter import *
 ventana = Tk()
 ventana.geometry("1190x990")
 ventana.title("DISEÑO ESTRUCTURAL MÉNSULA")
+ventana.iconbitmap('D:\\BIBLIOTECA PERSONAL\\Programación\\Python\\logo-wat.ico')
 
 # Función para programar boton "Calcular"
 
@@ -905,7 +906,7 @@ boton3 = Button(ventana, text = 'Borrar', command=borrar)
 boton3.pack()
 boton3.place(x=720, y=960, width=150, height=20)
 
-label = Label(ventana, text = "IEB - Diseños civiles - Obras Especiales - 2023 w.a.t. ", font='Arial 7')
+label = Label(ventana, text = "wilson.taimalc@gmail.com - 2023", font='Arial 7')
 label.pack()
 label.place(x=955, y=970, width=225, height=10)
 
