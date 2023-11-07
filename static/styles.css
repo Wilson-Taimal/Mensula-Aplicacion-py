@@ -1,0 +1,33 @@
+body { background: #F7F9F9 }
+
+nav {font-family: sans-serif; height: 40px;
+    background-color: #333; /* Color de fondo de la barra de navegación */
+    color: white; /* Color del texto en la barra de navegación */
+    text-align: left; /* Alineación del texto en el centro */
+    padding: 6px; /* Espaciado interno en la barra de navegación */
+    font-size: 15px; /* Tamaño del texto */
+}
+
+.emcabezado {font-family: verdana; text-align: center; color: #424343}
+
+.pie {font-family: sans-serif; font-size: 10px; color: #797D7F; text-align: left}
+
+.container {display: flex; flex-wrap: wrap; font-family: sans-serif;  justify-content: center; color: #424343}
+
+.column {padding: 10px; border: 1px solid #ccc; margin: 20px; box-sizing: border-box; width: 500px}
+
+label {font-size: 13px}
+
+p {font-size: 13px}
+
+input {font-size: 13px; text-align: center; float: right}
+
+.Boton {position: auto; width: 170px; height: 30px; border: 1px solid #B2BABB; background: #73C6B6; color: #FFFFFF }
+
+img {display: block; margin: 0 auto; max-width: 100% }
+
+table {font-size: 13px; border-collapse: collapse; width: 470px}
+
+th, td {border: 1px solid #A0A2A4; text-align: center; padding: 5px}
+
+.Reporte {font-family: verdana; font-size: 12px; text-align: center; border: 1px solid #B2BABB; padding: 7.5px; width: 170px; background: #73C6B6}

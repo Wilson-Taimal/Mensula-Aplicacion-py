@@ -1,0 +1,291 @@
+{% include 'emcabezado.html' %}
+
+    <body>
+     <div class="container">
+         {% if material and geom and carga and ref and calculo  and chequeo  %}
+
+         <div class="column">
+            <h5> Datos iniciales </h5>
+
+             <p> Materiales. </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td> fc. Resistencia del concreto. _ [MPa] </td>
+                        <td> {{material.fc}}  </td>
+                    </tr>
+                    <tr>
+                        <td> fy. Fluencia del acero. _ [MPa] </td>
+                        <td> {{material.fy}}  </td>
+                    </tr>
+                    <tr>
+                        <td> µ. Coeficiente de fricción. </td>
+                        <td> {{material.u}}  </td>
+                    </tr><tr>
+                        <td> øv. Factor de reducción a cortante. </td>
+                        <td> {{material.phiv}}  </td>
+                    </tr>
+                    <tr>
+                        <td> øf. Factor de reducción a flexión. </td>
+                        <td> {{material.phif}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Número de la barra refuerzo principal. </td>
+                        <td> {{ref.Nb}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Número de la barra estribos cerrados. </td>
+                        <td> {{ref.Nbe}}  </td>
+                    </tr>
+                </tbody>
+            </table>
+
+             <p> Geometría. </p>
+             <table>
+                <tbody>
+                 <tr>
+                    <td> av. Dist. aplicación de carga. _ [cm] </td>
+                    <td> {{geom.av}}  </td>
+                </tr>
+                <tr>
+                    <td> b. Ancho del soporte. _ [cm] </td>
+                    <td> {{geom.b}}  </td>
+                </tr>
+                <tr>
+                    <td> c. Ancho de la ménsula. _ [cm] </td>
+                    <td> {{geom.c}}  </td>
+                </tr>
+                <tr>
+                    <td> h. Altura de la ménsula. _ [cm] </td>
+                    <td> {{geom.h}}  </td>
+                </tr>
+                <tr>
+                    <td> r. Recubrimiento del refuerzo. _ [cm] </td>
+                    <td> {{geom.r}}  </td>
+                </tr>
+                <tr>
+                    <td> bw. Largo de la ménsula _ [cm] </td>
+                    <td> {{geom.bw}}  </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+             <p> Cargas. </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td> Vu. Fuerza cortante. _ [kN] </td>
+                        <td> {{carga.Vu}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Nuc. Fuerza horizontal. _ [kN] </td>
+                        <td> {{carga.Nuc1}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Nuc cal = 0.2 * Vu _ [kN] </td>
+                        <td> {{carga.Nuc2}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Nuc = máx(Nuc, Nuc cal) _ [kN] </td>
+                        <td> {{carga.Nuc}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Mu. Momento flector _ [kN.cm] </td>
+                        <td> {{carga.Mu}}  </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+         <div class="column">
+            <h5> Diseño </h5>
+            <p> Refuerzo principal </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td> Avf = Vu / (ø * fy * μ) _ [cm²] </td>
+                        <td> {{calculo.Avf}}  </td>
+                    </tr>
+                    <tr>
+                        <td> An = Nuc / (ø * fy) _ [cm²] </td>
+                        <td> {{calculo.An}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Af = Mu / (ø * fy * (d - a / 2)) _ [cm²] </td>
+                        <td> {{calculo.Af}}  </td>
+                    </tr>
+                    <tr>
+                        <td> As1 = Af + An _ [cm²] </td>
+                        <td> {{calculo.As1}}  </td>
+                    </tr>
+                    <tr>
+                        <td> As2 = 2/3 * Avf + An _ [cm²] </td>
+                        <td> {{calculo.As2}}  </td>
+                    </tr>
+                    <tr>
+                        <td> As3 = 0.04 * (fc / fy ) * bw * d _ [cm²] </td>
+                        <td> {{calculo.As3}}  </td>
+                    </tr>
+                    <tr>
+                        <td> As = máx (As1, As2, As3) _ [cm²] </td>
+                        <td> {{calculo.As}}  </td>
+                    </tr>
+                </tbody>
+            </table>
+
+             <p> Refuerzo auxiliar </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td> Aa : 0.002 * bw * c _ [cm²] </td>
+                        <td> {{calculo.Aa}}  </td>
+                    </tr>
+                </tbody>
+            </table>
+
+             <p> Estribos cerrados </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td> Ah = 0.5 * (As - An) _ [cm²] </td>
+                        <td> {{calculo.Ah}}  </td>
+                    </tr>
+                </tbody>
+            </table>
+
+             <p> Distribución de refuerzo  </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td> Refuerzo principal </td>
+                        <td> {{ref.Refp}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Refuerzo auxiliar </td>
+                        <td> {{ref.Refa}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Estribos cerrados </td>
+                        <td> {{ref.Refe}}  </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="column">
+            <h5> Chequeos y detalles </h5>
+            <p> Chequeo inicial </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td> Relación av/d < 1.0 </td>
+                        <td> {{chequeo.relacion_ad}}  </td>
+                    </tr>
+                    <tr>
+                        <td> hm: hmin = 0.5 * d _ [cm] </td>
+                        <td> {{geom.hmin}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Nuc ≤ Vu </td>
+                        <td> {{chequeo.Nuc_menor_Vu}}  </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p> Verificación Vu _ kN </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td> Vc1 = 0.2 * ø * fc * bw * d _ [kN] </td>
+                        <td> {{calculo.Vc1}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Vc2 = (3.3 + 0.08 * fc) * ø * bw * d _ [kN] </td>
+                        <td> {{calculo.Vc2}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Vc3 = 11 * ø * bw * d _ [kN] </td>
+                        <td> {{calculo.Vc3}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Vc = mín. (Vc1, Vc2, Vc3) _ [kN] </td>
+                        <td> {{calculo.Vc}}  </td>
+                    </tr>
+                    <tr>
+                        <td> Vu ≤ Vc </td>
+                        <td> {{chequeo.Vu_menor_Vc}}  </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p> Verificación refuerzo mínimo </p>
+                <table>
+                <tbody>
+                    <tr>
+                        <td> Asc. Acero colocado _ [cm²] </td>
+                        <td> {{calculo.Ascol}}  </td>
+                    </tr>
+                    <tr>
+                        <td> pcal = Asc / (bw * d) </td>
+                        <td> {{calculo.pcal}}  </td>
+                    </tr>
+                    <tr>
+                        <td> pmín = 0.04 * fc / fy </td>
+                        <td> {{calculo.pmin}}  </td>
+                    </tr>
+                    <tr>
+                        <td> pcal ≥ pmín </td>
+                        <td> {{chequeo.pcal_mayor_pmin}}  </td>
+                    </tr>
+                </tbody>
+            </table>
+
+             <p> Detalles de la soldadura </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td> db. Diámetro refuerzo principal. _ [cm] </td>
+                        <td> {{ref.db}}  </td>
+                    </tr>
+                    <tr>
+                        <td> lw. Long lateral de la soldadura. _ [cm] </td>
+                        <td> {{calculo.lw}}  </td>
+                    </tr>
+                    <tr>
+                        <td> tw. Long transversal de la soldadura. _ [cm] </td>
+                        <td> {{calculo.tw}}  </td>
+                    </tr>
+                </tbody>
+            </table> <br>
+
+        </div>
+
+         <div class="container">
+                  <div class="column">
+                    <P> Geometría de la ménsula </P>
+                    <img src="../static/img01.png" />
+                 </div>
+                <div class="column">
+                    <P> Detalles de la soldadura. </P>
+                    <img src="../static/img03.png" />
+                 </div>
+         </div>
+
+     </div>
+
+    <div class="container">
+        {% if excel_filename %}
+        <p class = "Reporte"> <a href="{{ url_for('static', filename=excel_filename) }}" download> Reporte en Excel </a></p>
+        {% endif %}
+    </div>
+
+     <div class="container">
+         <p class = "Reporte"> <a href="/"> Regresar </a> </p>
+     </div>
+
+     {% endif %}
+
+    </body>
+
+{% include 'footer.html' %}

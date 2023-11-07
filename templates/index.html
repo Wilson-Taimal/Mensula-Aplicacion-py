@@ -1,0 +1,61 @@
+{% include 'emcabezado.html' %}
+
+    <body>
+    <div class="container">
+        <div class="column">
+            <h4>DATOS INICIALES</h4>
+
+            <form method="POST" action="/">
+
+                    <h5>Materiales</h5>
+                    <label for="fc">fc: Resistencia del concreto a compresión _ [MPa]</label>
+                    <input type="text"  name="fc" value="{{ fc|default('21') }}" required> <br><br>
+                    <label for="fy">fy: Fluencia del acero _ [MPa]</label>
+                    <input type="text" name="fy" value="{{ fy|default('420') }}" required><br><br>
+                    <label for="u">µ. Coeficiente de fricción.</label>
+                    <input type="text" name="u" value="{{ u|default('1.40') }}" required><br><br>
+                    <label for="phiv">øv. Factor de reducción a cortante.</label>
+                    <input type="text" name="phiv" value="{{ phiv|default('0.75') }}" required><br><br>
+                    <label for="phif">øf. Factor de reducción a flexión.</label>
+                    <input type="text" name="phif" value="{{ phif|default('0.75') }}" required><br><br>
+                    <label for="Nb">Número de la barra refuerzo principal.</label>
+                    <input type="text" name="Nb" value="{{ Nb|default('4') }}" required><br><br>
+                    <label for="Nbe">Número de la barra estribos cerrados.</label>
+                    <input type="text" name="Nbe"value="{{ Nbe|default('3') }}"  required>
+
+                    <h5>Geometría</h5>
+                    <label for="av">av. Dist. aplicación de carga. _ [cm]:</label>
+                    <input type="text" name="av" value="{{ av|default('25') }}" required><br><br>
+                    <label for="b">b. Ancho del soporte. _ [cm]:</label>
+                    <input type="text" name="b" value="{{ b|default('30') }}" required><br><br>
+                    <label for="c">c. Ancho de la ménsula. _ [cm]:</label>
+                    <input type="text" name="c" value="{{ c|default('50') }}" required><br><br>
+                    <label for="h">h. Altura de la ménsula _ [cm]:</label>
+                    <input type="text" name="h" value="{{ h|default('60') }}" required><br><br>
+                    <label for="r">r. Recubrimiento del refuerzo. _ [cm]:</label>
+                    <input type="text" name="r" value="{{ r|default('3.0') }}" required><br><br>
+                    <label for="bw">bw. Largo de la ménsula _ [cm]:</label>
+                    <input type="text" name="bw" value="{{ bw|default('100') }}" required>
+
+                    <h5>Cargas</h5>
+                    <label for="Vu">Vu. Fuerza cortante mayorada _ [kN]:</label>
+                    <input type="text" name="Vu" value="{{ Vu|default('450') }}" required><br><br>
+                    <label for="Nu">Nuc. Fuerza cortante mayorada _ [kN]:</label>
+                    <input type="text" name="Nu" value="{{ Nu|default('20') }}" required><br><br>
+
+                    <input type="submit" class="Boton" value="Calcular">
+
+            </form>
+        </div>
+
+        <div class="column">
+            <h5>Geometría de la ménsula</h5>
+            <img src="../static/img01.png" />
+            <h5>Coeficiente de fricción</h5>
+            <img src="../static/img02.png" />
+        </div>
+
+    </div>
+
+    </body>
+{% include 'footer.html' %}
